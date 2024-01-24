@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>LinkedIn Job Monitor Results</title>
+</head>
+<body>
+<h1>LinkedIn Job Monitor Results</h1>
+<div id="graph"></div>
+<table border="1">
+<thead>
+<tr>
+<th>Title</th>
+<th>Location</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+{% for job in jobs %}
+<tr>
+<td>{{ job.title }}</td>
+<td>{{ job.location }}</td>
+<td>{{ job.description }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<script>
+// Plot the graph
+var data = [{
+x: {{ dates }},
+y: {{ counts }},
+mode: 'lines'
+}];
+
+var layout = {
+title: 'Number of Jobs Over Time',
+xaxis: {
+title: 'Date'
+},
+yaxis: {
+title: 'Number of Jobs'
+}
+};
+
+Plotly.newPlot('graph', data, layout);
+</script>
+</body>
+</html>
+
